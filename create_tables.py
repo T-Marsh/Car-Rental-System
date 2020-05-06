@@ -11,6 +11,4 @@ engine = create_engine(DATABASE_URI, echo=False)
 # Create database and tables
 Base.metadata.create_all(engine)
 
-# Message once task is completed
-print("Car Rental System database created ...")
-print("Use DB Browser for SQLite to view the contents of the database app.db ...")
+print("Car Rental System database created.")
