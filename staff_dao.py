@@ -77,7 +77,7 @@ class StaffDAO():
     def find_all(self, session):
         
         # Debugging print
-        print("\nFinding all staff memebers ...")
+        print("\nFinding all staff members ...")
 
         result = {}
 
