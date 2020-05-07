@@ -27,7 +27,7 @@ class StaffDAO():
     def find_by_id(self, session, staff_id):
         
         # Debugging print
-        print("\nFinding a staff member of ID: {}".format(staff_id))
+        print("\nFinding a staff member of ID: {} ...".format(staff_id))
 
         stf = session.query(Staff).get(staff_id) 
         
