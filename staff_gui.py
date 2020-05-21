@@ -70,7 +70,7 @@ class StaffGUI():
         tk.Label(form_frame, text= "Password", font=('arial', 10), width=20, 
                  anchor="e", bd=1, pady=10, padx=10).grid(row=4, column=0)
         tk.Entry(form_frame, textvariable=self.staff_password, 
-                 width=30, bd=1).grid(row=3, column=1)
+                 width=30, bd=1).grid(row=4, column=1)
         
         button_frame = tk.Frame(sta_frame, pady=10) 
         button_frame.pack()
