@@ -247,10 +247,6 @@ class StaffGUI():
         self.staff_password.set(emp['staff_password'])
         pass
 
-# ###########
-# Main method
-# ###########
-
 if __name__ == '__main__':
      
     # Setup a root window (in the middle of the screen)
