@@ -25,17 +25,17 @@ def populate():
 
     # Staff data
     session.add_all([
-        Staff(staff_name = 'Thomas', 
-            staff_surname = 'Marsh', 
-            staff_password = 'password'),
+        Staff(staff_name='Thomas', 
+            staff_surname='Marsh', 
+            staff_password='password'),
 
-        Staff(staff_name = 'Jane', 
-            staff_surname = 'Doe', 
-            staff_password = '123abc'),
+        Staff(staff_name='Jane', 
+            staff_surname='Doe', 
+            staff_password='123abc'),
 
-        Staff(staff_name = 'John', 
-            staff_surname = 'Smith', 
-            staff_password = 'qwerty')  
+        Staff(staff_name='John', 
+            staff_surname='Smith', 
+            staff_password='qwerty')  
         ])
 
     # Customer data
@@ -80,44 +80,44 @@ def populate():
             car_colour='Gray')   
     ])
 
-    # Booking data
-    session.add_all([
-        Booking(customer_id=1, 
-            car_registration=2, 
-            staff_id=3,
-            booking_date_start='21/02/20',
-            booking_date_end='30/07/20',
-            booking_comments='None.'),
+    # # Booking data
+    # session.add_all([
+    #     Booking(customer_id=1, 
+    #         car_registration=2, 
+    #         staff_id=3,
+    #         booking_date_start='21/02/20',
+    #         booking_date_end='30/07/20',
+    #         booking_comments='None.'),
 
-        Booking(customer_id=3, 
-            car_registration=1, 
-            staff_id=2,
-            booking_date_start='04/12/20',
-            booking_date_end='30/12/20',
-            booking_comments='Something.'),
+    #     Booking(customer_id=3, 
+    #         car_registration=1, 
+    #         staff_id=2,
+    #         booking_date_start='04/12/20',
+    #         booking_date_end='30/12/20',
+    #         booking_comments='Something.'),
 
-        Booking(customer_id=2, 
-            car_registration=3, 
-            staff_id=2,
-            booking_date_start='21/04/20',
-            booking_date_end='10/09/20',
-            booking_comments='N/A')  
-    ])
+    #     Booking(customer_id=2, 
+    #         car_registration=3, 
+    #         staff_id=2,
+    #         booking_date_start='21/04/20',
+    #         booking_date_end='10/09/20',
+    #         booking_comments='N/A')  
+    # ])
 
-    # Invoice data
-    session.add_all([
-        Invoice(booking_id=3, 
-            invoice_date='21/04/20', 
-            invoice_cost=1000.50),
+    # # Invoice data
+    # session.add_all([
+    #     Invoice(booking_id=3, 
+    #         invoice_date='21/04/20', 
+    #         invoice_cost=1000.50),
 
-        Invoice(booking_id=2, 
-            invoice_date='04/12/20', 
-            invoice_cost=800.37),
+    #     Invoice(booking_id=2, 
+    #         invoice_date='04/12/20', 
+    #         invoice_cost=800.37),
 
-        Invoice(booking_id=1, 
-            invoice_date='07/09/20', 
-            invoice_cost=10020.51)
-    ])
+    #     Invoice(booking_id=1, 
+    #         invoice_date='07/09/20', 
+    #         invoice_cost=10020.51)
+    # ])
 
     # Commit the transactions
     session.commit()

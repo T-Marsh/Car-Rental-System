@@ -3,7 +3,7 @@ from tkinter import messagebox
 import tkinter.ttk as ttk # for combobox
 import database as db
 from staff_dao import StaffDAO
-# from validation.py import Validation
+from validation import Validation
 
 class StaffGUI():
 
@@ -15,7 +15,7 @@ class StaffGUI():
 
         # Instantiate a validation object
         # Contains methods to validate input fields
-        # self.validator = Validation()
+        self.validator = Validation()
 
         # Form fields
         # Instantiate stringvars - hold  data entered in  fields of form
@@ -34,7 +34,7 @@ class StaffGUI():
 
     def create_gui(self, root):
 
-        print("Creating employee GUI ...")
+        print("Creating staff GUI ...")
 
         sta_frame = tk.Frame(root)
         sta_frame.pack()
@@ -96,7 +96,7 @@ class StaffGUI():
 
     def save(self):
         
-        print("Saving an employee ...")
+        print("Saving a staff member ...")
 
         data = self.get_fields()   
 
@@ -140,21 +140,16 @@ class StaffGUI():
         if len(data['staff_password'])==0:
             valid_data = False
             message_list.append("staff_password is empty")
-
-        # Other possible checks
-
-        # Implement these as functions in the Validation class so that 
-        # other classes can call them
          
         # Check if firstname and lastname contain  
         # only alphabetic characters (and may be certain special characters)
-        # if not self.validator.is_alphabetic(data['staff_name']):
-        #     valid_data = False
-        #     message_list.append("invalid staff_name")
+        if not self.validator.is_alphabetic(data['staff_name']):
+            valid_data = False
+            message_list.append("invalid staff_name")
 
-        # if not self.validator.is_alphabetic(data['staff_surname']):
-        #     valid_data = False
-        #     message_list.append("invalid staff_surname")
+        if not self.validator.is_alphabetic(data['staff_surname']):
+            valid_data = False
+            message_list.append("invalid staff_surname")
      
         # Join the items in the list as a string separated with a comma and a space    
         message = ', '.join(message_list) 
@@ -176,7 +171,7 @@ class StaffGUI():
 
     def update(self, data):
 
-        print("Updating an employee ...")
+        print("Updating an staff member ...")
         print(data)
 
         session = db.get_db_session() # Get a session (database.py)
@@ -210,7 +205,7 @@ class StaffGUI():
         if "staff_ids" in result: 
             list_ids = result['staff_ids']
             self.lb_ids.delete(0,tk.END)
-            print("Setting employee_id in listbox ...")
+            print("Setting staff_id in listbox ...")
             for x in list_ids:
                 self.lb_ids.insert(tk.END, x)
                 #print(x)
@@ -238,13 +233,13 @@ class StaffGUI():
         self.populate_fields(sta)
         pass
 
-    def populate_fields(self, emp):
+    def populate_fields(self, sta):
         
         # Set the values from the dict to the stringvars
-        self.staff_id.set(emp['staff_id'])
-        self.staff_name.set(emp['staff_name'])
-        self.staff_surname.set(emp['staff_surname'])
-        self.staff_password.set(emp['staff_password'])
+        self.staff_id.set(sta['staff_id'])
+        self.staff_name.set(sta['staff_name'])
+        self.staff_surname.set(sta['staff_surname'])
+        self.staff_password.set(sta['staff_password'])
         pass
 
 if __name__ == '__main__':

@@ -2,6 +2,10 @@ import tkinter as tk
 from tkinter import messagebox
 
 from staff_gui import StaffGUI
+from customer_gui import CustomerGUI
+# from car_gui import CarGUI
+# from booking_gui import BookingGUI
+# from invoice_gui import InvoiceGUI
 
 class RCBSGUI():
 
@@ -28,24 +32,39 @@ class RCBSGUI():
 
         filemenu = tk.Menu(menubar, tearoff=0)
 
-        # Add menu items
-        filemenu.add_command(label="Open", command="")
-        filemenu.add_command(label="Save", command="")
-        filemenu.add_separator()
+        # Quit Program menu
         filemenu.add_command(label="Exit", command=self.root.quit)
-        
-        # Add pulldown menu to toplevel menu
-        menubar.add_cascade(label="File", menu=filemenu)
+        menubar.add_cascade(label="Program", menu=filemenu)
        
         # Staff menu (pulldown)
-        # Create a pulldown menu
         staff_menu = tk.Menu(menubar, tearoff=0)
-        # Add menu items
-        # do not use self.create_staff_gui()
         staff_menu.add_command(label="Staff", 
-            command=self.create_staff_gui) 
-        # Add pulldown menu to toplevel menu
+            command=self.create_staff_gui)
         menubar.add_cascade(label="Staff", menu=staff_menu)
+
+        # Customer menu (pulldown)
+        customer_menu = tk.Menu(menubar, tearoff=0)
+        customer_menu.add_command(label="Customer", 
+            command=self.create_customer_gui)
+        menubar.add_cascade(label="Customer", menu=customer_menu)
+
+        # Car menu (pulldown)
+        car_menu = tk.Menu(menubar, tearoff=0)
+        # car_menu.add_command(label="Car", 
+            # command=self.create_car_gui)
+        menubar.add_cascade(label="Car", menu=car_menu)
+
+        # Booking menu (pulldown)
+        booking_menu = tk.Menu(menubar, tearoff=0)
+        # booking_menu.add_command(label="Booking", 
+        #     command=self.create_booking_gui)
+        menubar.add_cascade(label="Booking", menu=booking_menu)
+
+        # Invoice menu (pulldown)
+        invoice_menu = tk.Menu(menubar, tearoff=0)
+        # Invoice_menu.add_command(label="Invoice", 
+        #     command=self.create_Invoice_gui)
+        menubar.add_cascade(label="Invoice", menu=invoice_menu)
 
         # Display the menu
         self.root.config(menu=menubar)
@@ -56,6 +75,23 @@ class RCBSGUI():
     # when menu options are selected
 
     def create_staff_gui(self):
+        # Destroy whatever the current GUI is
+        # and create Staff GUI
+        if self.current_gui:
+            self.current_gui.destroy()
+
+        staff_gui = StaffGUI()
+        self.current_gui = staff_gui.create_gui(self.root)
+        pass
+
+    def create_customer_gui(self):
+        # Destroy whatever the current GUI is
+        # and create Staff GUI
+        if self.current_gui:
+            self.current_gui.destroy()
+
+        customer_gui = CustomerGUI()
+        self.current_gui = customer_gui.create_gui(self.root)
         pass
 
 if __name__ == '__main__':

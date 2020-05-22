@@ -101,7 +101,7 @@ class CustomerDAO():
             d['customer_postcode'] = cust.customer_postcode
             d['customer_phone'] = cust.customer_phone
 
-            result['staff'] = d           
+            result['customer'] = d           
         
         return result
 

@@ -36,24 +36,19 @@ class Validation():
             return True
         else:
             print("Invalid phone number")
-            return False  
+            return False
 
-    def is_email(self, val):
-        val = str(val)
-        # Check that it has exactly one @ sign, 
-        # and at least one . in the part after the @
-        if re.match(r'[\w.-]+@[\w.-]+', val):
-        #if re.search(r'\w+@\w+', val):
-            print("Valid email")
-            return True
-        else:
-            print("Invalid email")
-            return False  
-    
+    # NOTE: WIP
+    # def is_date(self, val):
+    #     val = str(val)
+    #     if re.search(r'(^\d{2} \d{2} \d{2}', val):
+    #         print("Valid date")
+    #         return True
+    #     else:
+    #         print("Invalid date")
+    #         return False
         
     pass
 
 if __name__ == '__main__':
-    # Instead of writing separate test scripts, could write them here
-    # The test scripts would not be executed when the file is imported into another one
     pass        

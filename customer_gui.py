@@ -3,7 +3,7 @@ from tkinter import messagebox
 import tkinter.ttk as ttk # for combobox
 import database as db
 from customer_dao import CustomerDAO
-# from validation.py import Validation
+from validation import Validation
 
 class CustomerGUI():
 
@@ -15,7 +15,7 @@ class CustomerGUI():
 
         # Instantiate a validation object
         # Contains methods to validate input fields
-        # self.validator = Validation()
+        self.validator = Validation()
 
         # Form fields
         # Instantiate stringvars - hold  data entered in  fields of form
@@ -28,7 +28,7 @@ class CustomerGUI():
         self.customer_postcode = tk.StringVar()
         self.customer_phone = tk.StringVar()
 
-        # List of staff ids - lb for listbox
+        # List of customer ids - lb for listbox
         self.lb_ids = None
 
         # Messagebox title
@@ -124,18 +124,18 @@ class CustomerGUI():
 
     def save(self):
         
-        print("Saving an employee ...")
+        print("Saving a customer ...")
 
         data = self.get_fields()   
 
         # Validate the data
         valid_data, message = self.validate_fields(data)
         if valid_data:
-            if (len(data['staff_id'])==0):
-                print("Calling create() as staff_id is absent")
+            if (len(data['customer_id'])==0):
+                print("Calling create() as customer_id is absent")
                 self.create(data)
             else:
-                print("Calling update() as staff_id is present")
+                print("Calling update() as customer_id is present")
                 self.update(data)
                 pass
         else:
@@ -162,30 +162,22 @@ class CustomerGUI():
         
         message_list = [] 
         # Check for blank fields
-        if len(data['staff_name'])==0:
+        if len(data['customer_name'])==0:
             valid_data = False
-            message_list.append("staff_name is empty")
-        if len(data['staff_surname'])==0:
+            message_list.append("customer_name is empty")
+        if len(data['customer_surname'])==0:
             valid_data = False
-            message_list.append("staff_surname is empty")
-        if len(data['staff_password'])==0:
-            valid_data = False
-            message_list.append("staff_password is empty")
-
-        # Other possible checks
-
-        # Implement these as functions in the Validation class so that 
-        # other classes can call them
+            message_list.append("customer_surname is empty")
          
         # Check if firstname and lastname contain  
         # only alphabetic characters (and may be certain special characters)
-        # if not self.validator.is_alphabetic(data['staff_name']):
-        #     valid_data = False
-        #     message_list.append("invalid staff_name")
+        if not self.validator.is_numeric(data['customer_name']):
+            valid_data = False
+            message_list.append("invalid customer_name")
 
-        # if not self.validator.is_alphabetic(data['staff_surname']):
-        #     valid_data = False
-        #     message_list.append("invalid staff_surname")
+        if not self.validator.is_numeric(data['customer_surname']):
+            valid_data = False
+            message_list.append("invalid customer_surname")
      
         # Join the items in the list as a string separated with a comma and a space    
         message = ', '.join(message_list) 
@@ -194,7 +186,7 @@ class CustomerGUI():
 
     def create(self, data):
         
-        print("Creating an staff ...")
+        print("Creating an customer ...")
         print(data)
 
         session = db.get_db_session() # Get a session
@@ -219,7 +211,7 @@ class CustomerGUI():
 
     def delete(self):
         
-        # Grab the staff_id from the stringvar
+        # Grab the customer_id from the stringvar
         id = self.customer_id.get() 
         print(id)
         
